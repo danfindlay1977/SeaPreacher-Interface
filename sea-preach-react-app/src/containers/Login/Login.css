@@ -6,7 +6,8 @@
   text-align: center;
   padding: 1em;
   background-color: #fff;
-  width: 30vw;
+  max-width: 30vw;
+  max-height: 40vw;
   -webkit-box-shadow: 5px 5px 3px -3px black;
   -moz-box-shadow: 3px 2px 3px -3px black;
   box-shadow: 3px 2px 3px -3px black;

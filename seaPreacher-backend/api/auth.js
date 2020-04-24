@@ -29,6 +29,9 @@ api.post("/", (req, res) => {
   res.json({ auth: verfied });
 });
 
-console.log("in auth");
+api.put("/signOut", (req, res) => {
+  auth = req.body.auth;
+  res.status(200).send();
+});
 
 module.exports = api;

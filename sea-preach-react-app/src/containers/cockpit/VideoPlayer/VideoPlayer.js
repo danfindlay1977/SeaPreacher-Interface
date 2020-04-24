@@ -1,12 +1,13 @@
 import React from "react";
 import "./VideoPlayer.css";
-import { Player } from "video-react";
+import ReactPlayer from "react-player";
 import "../../../../node_modules/video-react/dist/video-react.css";
 
 const VideoPlayer = (props) => {
   return (
     <div className="player-wrapper">
-      <h1>VideoPlayer</h1>
+      <ReactPlayer url="https://www.youtube.com/watch?v=ysz5S6PUM-U" playing  width="100%"
+    height="100%" />
     </div>
   );
 };

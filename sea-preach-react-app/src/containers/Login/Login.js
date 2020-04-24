@@ -4,6 +4,7 @@ import Header from "../../components/Header/Header";
 import ContactForm from "./Contact-form/Contact-form";
 import Axios from "axios";
 import "./Login.css";
+import auth from "../../auth";
 
 class Login extends React.Component {
   constructor() {
@@ -12,17 +13,17 @@ class Login extends React.Component {
       title: "SeaPreacher",
       currentPasscode: "",
       url: "",
-      auth: false,
       errorMessage: ""
     };
   }
   componentDidMount() {
-    Axios.get("http://localhost:8000/").then((res) => {
+    Axios.get("http://localhost:8000/auth").then((res) => {
       console.log(res.data.url);
       this.setState({ url: res.data.url });
     });
   }
 
+  // handle changes in input form
   handleChange = (e) => {
     const value = e.target.value;
     this.setState({ [e.target.name]: value });
@@ -33,11 +34,11 @@ class Login extends React.Component {
     const user = {
       userPin: this.state.currentPasscode
     };
-    Axios.post("http://localhost:8000/", { user }).then((res) => {
-      console.log(res.data.auth);
+    Axios.post("http://localhost:8000/auth", { user }).then((res) => {
       if (res.data.auth) {
-        this.setState({ auth: true });
-        this.props.history.replace("/cockpit");
+        auth.logIn(() => {
+          this.props.history.replace("/cockpit");
+        });
       } else {
         this.setState({ errorMessage: "This is the incorrect pin" });
       }

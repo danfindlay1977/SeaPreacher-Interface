@@ -1,24 +1,20 @@
 import React from "react";
 import "./toolbar.css";
+import ButtonBar from "../../../components/Button-bar/buttonBar";
 
 const Toolbar = (props) => {
   return (
     <section className="toolbar">
       <section className="logo">
-        <h1>{props.title}</h1>
+        <h2>{props.title}</h2>
       </section>
       <section className="system-controls">
         <button>Lights on/off</button>
-        <form>
-          <select>
-            <option value="Cockpit">Cockpit</option>
-            <option value="Explore">Explore</option>
-          </select>
-        </form>
+        <ButtonBar />
       </section>
       <section className="basic-controls">
         <button>Poweroff</button>
-        <button>Sign Out</button>
+        <button onClick={props.logOut}>Sign Out</button>
       </section>
     </section>
   );
