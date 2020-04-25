@@ -3,7 +3,7 @@ const app = express();
 const cors = require("cors");
 const socketio = require("socket.io");
 const port = 8000;
-app.use(cors());
+// * for testing only * app.use(cors());
 app.use(express.json());
 
 const expressServer = app.listen(port, () => {
@@ -11,6 +11,9 @@ const expressServer = app.listen(port, () => {
 });
 
 const io = socketio(expressServer);
+
+// serves react webpack build
+app.use(express.static("build", { extensions: ["html"] }));
 
 app.use("/auth", require("./api/auth"));
 
