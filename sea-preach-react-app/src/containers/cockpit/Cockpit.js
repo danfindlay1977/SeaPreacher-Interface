@@ -15,13 +15,13 @@ import Controls from "./Controls/Controls";
 
 import io from "socket.io-client";
 
-const socket = io("http://localhost:8000");
+const socket = io.connect();
 
 class Cockpit extends React.Component {
   constructor() {
     super();
     this.state = {
-      controlsOn: false
+      controlsOn: false,
     };
   }
   componentDidMount() {

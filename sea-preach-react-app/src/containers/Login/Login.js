@@ -13,11 +13,11 @@ class Login extends React.Component {
       title: "SeaPreacher",
       currentPasscode: "",
       url: "",
-      errorMessage: ""
+      errorMessage: "",
     };
   }
   componentDidMount() {
-    Axios.get("http://localhost:8000/auth").then((res) => {
+    Axios.get("/auth").then((res) => {
       console.log(res.data.url);
       this.setState({ url: res.data.url });
     });
@@ -32,9 +32,9 @@ class Login extends React.Component {
   handlePasscodeForm = (e) => {
     e.preventDefault();
     const user = {
-      userPin: this.state.currentPasscode
+      userPin: this.state.currentPasscode,
     };
-    Axios.post("http://localhost:8000/auth", { user }).then((res) => {
+    Axios.post("/auth", { user }).then((res) => {
       if (res.data.auth) {
         auth.logIn(() => {
           this.props.history.replace("/cockpit");
