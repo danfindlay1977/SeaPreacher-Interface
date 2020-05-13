@@ -12,6 +12,7 @@ import Login from "../Login/Login";
 import { BrowserRouter, Route } from "react-router-dom";
 import ControlBtn from "./Control-btn/Control-btn";
 import Controls from "./Controls/Controls";
+import Grabber from "./clawGrabber/clawGrabber";
 
 import io from "socket.io-client";
 
@@ -22,6 +23,7 @@ class Cockpit extends React.Component {
     super();
     this.state = {
       controlsOn: false,
+      grabber: true,
     };
   }
   componentDidMount() {
@@ -75,17 +77,40 @@ class Cockpit extends React.Component {
     socket.emit("stop");
   };
 
+  switchControls() {
+    switch (this.state.grabber) {
+      case true:
+        return <Grabber />;
+      case false:
+        return (
+          <Controls
+            left={this.left}
+            right={this.right}
+            forward={this.forward}
+            reverse={this.reverse}
+          />
+        );
+    }
+  }
+
+  menuClickHandler = (e) => {
+    if (e.target.className == "cockpit-btn") {
+      this.setState({ grabber: false });
+    } else {
+      this.setState({ grabber: true });
+    }
+  };
+
   render() {
     return (
       <div className="cockpit">
-        <Toolbar title={this.props.title} logOut={this.props.logOut} />
-        <VideoPlayer />
-        <Controls
-          left={this.left}
-          right={this.right}
-          forward={this.forward}
-          reverse={this.reverse}
+        <Toolbar
+          click={this.menuClickHandler}
+          title={this.props.title}
+          logOut={this.props.logOut}
         />
+        <VideoPlayer />
+        {this.switchControls()}
         <Sidebar />
         <ControlBtn start={this.start} stop={this.stop} />
         <Infobar />

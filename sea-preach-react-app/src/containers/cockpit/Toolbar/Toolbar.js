@@ -10,7 +10,7 @@ const Toolbar = (props) => {
       </section>
       <section className="system-controls">
         <button>Lights on/off</button>
-        <ButtonBar />
+        <ButtonBar click={props.click} />
       </section>
       <section className="basic-controls">
         <button>Poweroff</button>
