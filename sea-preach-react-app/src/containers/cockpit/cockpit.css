@@ -187,3 +187,16 @@
   box-shadow: 0 0 0 rgb(37, 36, 36), inset 4px 4px 4px rgb(37, 36, 36);
   transform: translate(6px 6px);
 }
+
+.sliderForm {
+  grid-column: 7/11;
+  grid-row: 2/4;
+  display: grid;
+  grid-template-columns: (1, 1fr);
+  grid-template-rows: (4, 1fr);
+}
+
+.slider {
+  grid-column: 1;
+  grid-row: 1/4;
+}

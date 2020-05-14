@@ -23,7 +23,8 @@ class Cockpit extends React.Component {
     super();
     this.state = {
       controlsOn: false,
-      grabber: true,
+      grabber: false,
+      grabberValue: 0,
     };
   }
   componentDidMount() {
@@ -80,7 +81,12 @@ class Cockpit extends React.Component {
   switchControls() {
     switch (this.state.grabber) {
       case true:
-        return <Grabber />;
+        return (
+          <Grabber
+            grabberValue={this.state.grabberValue}
+            onChangeSlider={this.sliderHandlar}
+          />
+        );
       case false:
         return (
           <Controls
@@ -100,6 +106,8 @@ class Cockpit extends React.Component {
       this.setState({ grabber: true });
     }
   };
+
+  sliderHandlar = (e) => this.setState({ grabberValue: e.target.value });
 
   render() {
     return (
