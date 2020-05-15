@@ -1,6 +1,6 @@
 class auth {
   constructor() {
-    this.auth = true;
+    this.auth = false;
   }
   logIn(cb) {
     this.auth = true;

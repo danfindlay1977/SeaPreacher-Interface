@@ -60,8 +60,8 @@ async function wifiData() {
   }
 }
 
-batteryData();
-wifiData();
+//batteryData();
+//wifiData();
 
 const wss = require("express-ws")(app);
 
